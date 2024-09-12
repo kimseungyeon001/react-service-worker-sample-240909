@@ -8,7 +8,7 @@ createRoot(document.getElementById("root")!).render(
   </StrictMode>
 );
 
-// NOTE: service worker登録
+// service-worker.js 登録
 if ("serviceWorker" in navigator) {
   // supported service worker
   window.addEventListener("load", () => {

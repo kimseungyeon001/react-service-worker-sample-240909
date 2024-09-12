@@ -1,5 +1,9 @@
 function App() {
-  return <div>React App</div>;
+  return (
+    <div>
+      <p>React App</p>
+    </div>
+  );
 }
 
 export default App;
