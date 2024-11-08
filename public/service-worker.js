@@ -3,7 +3,6 @@
 const cacheName = "react-service-worker-sample-cache";
 const urlsToCache = [
   "/",
-  "/index.html",
   // other files
 ];
 
