@@ -1,20 +1,27 @@
 // @see https://web.dev/articles/service-worker-lifecycle?hl=ja#updates
 
-const cacheName = "react-service-worker-sample-cache";
+const cacheName = "react-service-worker-sample";
 
 // @see https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    fetch("/dist/manifest.json")
-      .then((response) => response.json())
-      .then((manifest) => {
-        const urlsToCache = Object.values(manifest).map(
-          (entry) => `/dist/${entry.file}`
-        );
-        return caches.open(cacheName).then((cache) => {
+    caches.open(cacheName).then((cache) => {
+      fetch("dist/.vite/manifest.json")
+        .then((response) => response.json())
+        .then((manifest) => {
+          const srcUrl = Object.values(manifest).map(
+            (entry) => `/${entry.src}`
+          );
+          const fileUrl = Object.values(manifest).map(
+            (entry) => `/${entry.file}`
+          );
+          const cssUrl = Object.values(manifest).map(
+            (entry) => `/${entry.css}`
+          );
+          const urlsToCache = srcUrl.concat(fileUrl).concat(cssUrl);
           return cache.addAll(urlsToCache);
         });
-      })
+    })
   );
 });
 
