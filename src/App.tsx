@@ -1,6 +1,8 @@
+import "./App.css";
+
 function App() {
   return (
-    <div>
+    <div className="title">
       <p>React App</p>
     </div>
   );
