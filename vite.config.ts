@@ -10,7 +10,10 @@ export default defineConfig(async () => {
   // const { key, cert } = await certificateFor('localhost')
 
   return {
-    plugins: [react()],
+    plugins: [react(),],
+    build: {
+      manifest: true,
+    },
     // @see https://dev.classmethod.jp/articles/vite-https-localhost-devcert/
     // server: {
     //   open: true,

@@ -1,21 +1,20 @@
 // @see https://web.dev/articles/service-worker-lifecycle?hl=ja#updates
 
 const cacheName = "react-service-worker-sample-cache";
-// NOTE: キャッシュするファイルを指定
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/assets/index.js",
-  "/assets/index.css",
-  // other files
-];
 
 // @see https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
+    fetch("/dist/manifest.json")
+      .then((response) => response.json())
+      .then((manifest) => {
+        const urlsToCache = Object.values(manifest).map(
+          (entry) => `/dist/${entry.file}`
+        );
+        return caches.open(cacheName).then((cache) => {
+          return cache.addAll(urlsToCache);
+        });
+      })
   );
 });
 
