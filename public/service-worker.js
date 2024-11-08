@@ -1,6 +1,7 @@
 // @see https://web.dev/articles/service-worker-lifecycle?hl=ja#updates
 
 const cacheName = "react-service-worker-sample-cache";
+// NOTE: キャッシュするファイルを指定
 const urlsToCache = [
   "/",
   "/index.html",
