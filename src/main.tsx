@@ -9,6 +9,7 @@ createRoot(document.getElementById("root")!).render(
 );
 
 // service-worker.js 登録
+// NOTE: build後、確認可能。
 if ("serviceWorker" in navigator) {
   // supported service worker
   window.addEventListener("load", () => {
