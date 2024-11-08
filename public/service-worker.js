@@ -4,8 +4,8 @@ const cacheName = "react-service-worker-sample-cache";
 const urlsToCache = [
   "/",
   "/index.html",
-  "/src/main.jsx",
-  "/src/App.tsx",
+  "/assets/index.js",
+  "/assets/index.css",
   // other files
 ];
 
