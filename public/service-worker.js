@@ -6,7 +6,7 @@ const cacheName = "react-service-worker-sample";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(cacheName).then((cache) => {
-      fetch("dist/.vite/manifest.json")
+      fetch("/.vite/manifest.json")
         .then((response) => response.json())
         .then((manifest) => {
           const srcUrl = Object.values(manifest).map(
