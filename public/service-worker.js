@@ -2,25 +2,18 @@
 
 const cacheName = "react-service-worker-sample";
 
+const urlsToCache = [
+  "/index.html",
+  "/assets/index.js",
+  "/assets/index.css",
+  // other files
+];
+
 // @see https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(cacheName).then((cache) => {
-      fetch("/.vite/manifest.json")
-        .then((response) => response.json())
-        .then((manifest) => {
-          const srcUrl = Object.values(manifest).map(
-            (entry) => `/${entry.src}`
-          );
-          const fileUrl = Object.values(manifest).map(
-            (entry) => `/${entry.file}`
-          );
-          const cssUrl = Object.values(manifest).map(
-            (entry) => `/${entry.css}`
-          );
-          const urlsToCache = srcUrl.concat(fileUrl).concat(cssUrl);
-          return cache.addAll(urlsToCache);
-        });
+      return cache.addAll(urlsToCache);
     })
   );
 });

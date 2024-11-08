@@ -12,7 +12,13 @@ export default defineConfig(async () => {
   return {
     plugins: [react(),],
     build: {
-      manifest: true,
+      rollupOptions: {
+        output: {
+          entryFileNames: 'assets/[name].js',
+          chunkFileNames: 'assets/[name].js',
+          assetFileNames: 'assets/[name][extname]',
+        },
+      },
     },
     // @see https://dev.classmethod.jp/articles/vite-https-localhost-devcert/
     // server: {
